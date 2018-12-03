@@ -23,5 +23,9 @@ import {loadScript, validateData} from '../3p/3p';
 export function adpon(global, data) {
   validateData(data, [], ['fid']);
 
-  loadScript(global, 'https://s3-ap-northeast-1.amazonaws.com/ru-test-asset/amp.js?fid=' + data['fid']);
+  const {host} = global.context.location;
+
+  console.log(global.context.location);
+
+  loadScript(global, 'https://s3-ap-northeast-1.amazonaws.com/ru-test-asset/amp.js?fid=' + data['fid'] + '&host=' + encodeURIComponent(host));
 }
