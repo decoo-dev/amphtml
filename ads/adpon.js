@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {loadScript, validateData} from '../3p/3p';
+import {writeScript, validateData} from '../3p/3p';
 
 /**
  * @param {!Window} global
@@ -23,9 +23,8 @@ import {loadScript, validateData} from '../3p/3p';
 export function adpon(global, data) {
   validateData(data, [], ['fid']);
 
-  const {host} = global.context.location;
+  global.adponFid = data['fid'];
 
-  console.log(global.context.location);
 
-  loadScript(global, 'https://s3-ap-northeast-1.amazonaws.com/ru-test-asset/amp.js?fid=' + data['fid'] + '&host=' + encodeURIComponent(host));
+  writeScript(global, 'https://s3-ap-northeast-1.amazonaws.com/ru-test-asset/amp.js');
 }
